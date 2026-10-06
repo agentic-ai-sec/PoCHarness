@@ -1590,8 +1590,7 @@ def render_comparison(runs: list[EvalRun]) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Digest (compact per-instance summary for LLM interpretation — see
-# .claude/skills/interpret-run/SKILL.md)
+# Digest (compact per-instance summary for LLM interpretation)
 # ---------------------------------------------------------------------------
 
 DIGEST_VOCAB_VERSION = "v1"
