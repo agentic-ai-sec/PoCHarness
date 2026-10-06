@@ -82,7 +82,8 @@ before citing these as a clean, uncaveated table.
 ## Published results and artifacts
 
 The per-instance artifacts and evaluation reports are available in the
-[Hugging Face results dataset](https://huggingface.co/datasets/colemei/pocharness-results).
+[Hugging Face results dataset](https://huggingface.co/datasets/colemei/pocharness-results)
+(DOI [10.57967/hf/10789](https://doi.org/10.57967/hf/10789)).
 Open `SUMMARY.csv` for the raw pass/fail table.
 
 ## Inspecting published results
