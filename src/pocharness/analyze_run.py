@@ -18,7 +18,7 @@ Usage:
     # Raw run (no eval results)
     python analyze_run.py --run-dir .../e5-combined_run1/20260326_150736
 
-    # Published Zenodo results corpus (no rerun) -- point at the <model>/<scaffold>
+    # Published results corpus (no rerun) -- point at the <model>/<scaffold>
     # dir, e.g. the extracted release's gpt-5.5/pocharness/
     python analyze_run.py --eval-dir .../pocharness-results-anon/gpt-5.5/pocharness
 """
@@ -142,7 +142,7 @@ def load_report(path: Path) -> dict[str, dict]:
 
 
 def _is_instance_dir(p: Path) -> bool:
-    """An instance dir either has a live-run artifacts/ folder, or (Zenodo release
+    """An instance dir either has a live-run artifacts/ folder, or (published release
     layout) a poc/ folder or gzipped trajectory directly inside it."""
     return p.is_dir() and (
         (p / "artifacts").exists() or (p / "poc").exists() or (p / "trajectory.jsonl.gz").exists()
@@ -150,7 +150,7 @@ def _is_instance_dir(p: Path) -> bool:
 
 
 def is_release_corpus_dir(path: Path) -> bool:
-    """True for the Zenodo release layout: <model>/<scaffold>/{eval,instances}/."""
+    """True for the published release layout: <model>/<scaffold>/{eval,instances}/."""
     return (path / "eval").is_dir() and (path / "instances").is_dir()
 
 
@@ -177,7 +177,7 @@ def iter_instance_dirs(eval_dir: Path) -> list[Path]:
 def discover_report_paths(eval_dir: Path) -> dict[str, Path]:
     reports: dict[str, Path] = {}
     for grader in ("loose", "caller", "semantic", "strict"):
-        # live-run name first, then the Zenodo release's unsuffixed name
+        # live-run name first, then the published release's unsuffixed name
         for candidate in (f"report_{grader}_smolagent.jsonl", f"report_{grader}.jsonl"):
             path = eval_dir / candidate
             if path.exists():
@@ -453,7 +453,7 @@ def load_instance(
     instance_id = instance_dir.name
     art_dir = instance_dir / "artifacts"
     if not art_dir.exists():
-        # Zenodo release layout: no artifacts/ wrapper, trajectory is gzipped.
+        # published release layout: no artifacts/ wrapper, trajectory is gzipped.
         art_dir = instance_dir
     traj_path = art_dir / "trajectory.jsonl"
     if not traj_path.exists() and (art_dir / "trajectory.jsonl.gz").exists():

@@ -82,13 +82,21 @@ before citing these as a clean, uncaveated table.
 ## Published results and artifacts
 
 The per-instance artifacts and evaluation reports are available in the
-[Zenodo results record](https://zenodo.org/records/21194495?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjhiZTdhZTQ5LTBmMjgtNDEzMC1hNGE1LTdiZGZhZDQzYzgyNyIsImRhdGEiOnt9LCJyYW5kb20iOiIwNGRjZWQwZGEyZDU3NzZhMDNhNzUyZjRlODZkZjk4MiJ9.LfScpZ_HJDd2hb-Bg5yEZjZa79444AvlADHAc3X2gQcWRSefPkFIin-IfOwdOsBWyhRF9chdHM6rsjxLfRt3GA).
+[Hugging Face results dataset](https://huggingface.co/datasets/colemei/pocharness-results).
 Open `SUMMARY.csv` for the raw pass/fail table.
 
 ## Inspecting published results
 
-No rerun or API cost is required. Download and extract the results so the
-corpus is at `pocharness-results-anon/`, then run:
+No rerun or API cost is required. Download `pocharness-results.tar` and
+extract it so the corpus is at `pocharness-results-anon/` (the tar has no
+top-level directory):
+
+```bash
+mkdir pocharness-results-anon
+tar xf pocharness-results.tar -C pocharness-results-anon
+```
+
+Then run:
 
 ```bash
 python src/pocharness/analyze_run.py \
